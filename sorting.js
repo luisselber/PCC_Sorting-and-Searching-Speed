@@ -49,3 +49,21 @@ function mergeSubArrays(leftSubArray, rightSubArray) {
 
     return [...array, ...leftSubArray, ...rightSubArray];
 }
+
+// Quick
+
+function quickSort(unsortedArray) {
+    if (unsortedArray.length <= 1) {
+        return unsortedArray;
+    }
+
+    const pivot = unsortedArray[unsortedArray.length - 1];
+    const leftSubArray = [];
+    const rightSubArray = [];
+
+    for (let i = 0; i < unsortedArray.length - 1; i++) {
+        unsortedArray[i] < pivot ? leftSubArray.push(unsortedArray[i]) : rightSubArray.push(unsortedArray[i]);
+    }
+
+    return [...quickSort(leftSubArray), pivot, ...quickSort(rightSubArray)];
+}
