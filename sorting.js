@@ -1,28 +1,69 @@
-// Bubble
-function bubbleSort(unsortedArray) {
-    let flag = false;
+// Quick Sort
+function quickSort(unsortedArray) {
+    if (unsortedArray.length <= 1) {
+        return unsortedArray;
+    }
 
-    for (let i = 0; i < unsortedArray.length; i++) {
-        flag = false;
+    const pivot = unsortedArray[unsortedArray.length - 1];
+    const leftSubArray = [];
+    const rightSubArray = [];
 
-        for (let j = 0; j < (unsortedArray.length - i - 1); j++) {
-            if (unsortedArray[j] > unsortedArray[j + 1]) {
-                let temp = unsortedArray[j];
+    for (let i = 0; i < unsortedArray.length - 1; i++) {
+        unsortedArray[i] < pivot ? leftSubArray.push(unsortedArray[i]) : rightSubArray.push(unsortedArray[i]);
+    }
 
-                unsortedArray[j] = unsortedArray[j + 1];
-                unsortedArray[j + 1] = temp;
+    return [...quickSort(leftSubArray), pivot, ...quickSort(rightSubArray)];
+}
 
-                flag = true;
-            }
-        }
+// Radix Sort
+function radixSort(unsortedArray) {
+    let maxNum = getMax(unsortedArray, unsortedArray.length);
 
-        if (!flag) {
-            return;
-        }
+    for (let exp = 1; Math.floor(maxNum / exp) > 0; exp *= 10) {
+        countSort(unsortedArray, unsortedArray.length, exp);
     }
 }
 
-// Merge
+function getMax(unsortedArray, unsortedArrayLength) {
+    let maxNum = unsortedArray[0];
+
+    for (let i = 1; i < unsortedArrayLength; i++) {
+        if (unsortedArray[i] > maxNum) {
+            maxNum = unsortedArray[i];
+        }
+    }
+
+    return maxNum;
+}
+
+function countSort(unsortedArray, unsortedArrayLength, exp) {
+    let output = new Array(unsortedArrayLength);
+    let i;
+    let count = new Array(10);
+
+    for (let i = 0; i < 10; i++) {
+        count[i] = 0;
+    }
+
+    for (i = 0; i < unsortedArrayLength; i++) {
+        count[Math.floor(unsortedArray[i] / exp) % 10]++;
+    }
+
+    for (i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (i = unsortedArrayLength - 1; i >= 0; i--) {
+        output[count[Math.floor(unsortedArray[i] / exp) % 10] - 1] = unsortedArray[i];
+        count[Math.floor(unsortedArray[i] / exp) % 10]--;
+    }
+
+    for (i = 0; i < unsortedArrayLength; i++) {
+        unsortedArray[i] = output[i];
+    }
+}
+
+// Merge Sort
 function mergeSort(unsortedArray) {
     const middleIndex = unsortedArray.length / 2;
 
@@ -48,22 +89,4 @@ function mergeSubArrays(leftSubArray, rightSubArray) {
     }
 
     return [...array, ...leftSubArray, ...rightSubArray];
-}
-
-// Quick
-
-function quickSort(unsortedArray) {
-    if (unsortedArray.length <= 1) {
-        return unsortedArray;
-    }
-
-    const pivot = unsortedArray[unsortedArray.length - 1];
-    const leftSubArray = [];
-    const rightSubArray = [];
-
-    for (let i = 0; i < unsortedArray.length - 1; i++) {
-        unsortedArray[i] < pivot ? leftSubArray.push(unsortedArray[i]) : rightSubArray.push(unsortedArray[i]);
-    }
-
-    return [...quickSort(leftSubArray), pivot, ...quickSort(rightSubArray)];
 }
