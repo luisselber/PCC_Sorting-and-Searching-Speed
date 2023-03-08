@@ -90,3 +90,5 @@ function mergeSubArrays(leftSubArray, rightSubArray) {
 
     return [...array, ...leftSubArray, ...rightSubArray];
 }
+
+export { quickSort, radixSort, mergeSort };
