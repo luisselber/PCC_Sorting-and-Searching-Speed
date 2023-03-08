@@ -1,21 +1,34 @@
 // Binary Search 
-function binarySearch(arr, left, right) {
-    if (right >= left) {
-        let mid = left + Math.floor((right - left) / 2);
+function binarySearch(arr, key){
+    let start = 0;
+    let end = arr.length - 1;
 
-        if (arr[mid] == 10) {
-            return mid;
+    while (start <= end) {
+        let middle = Math.floor((start + end) / 2);
+
+        if (arr[middle] === key) {
+            // Item found
+            return middle;
+        } else if (arr[middle] < key) {
+            start = middle + 1;
+        } else {
+            end = middle - 1;
         }
-
-        if (arr[mid] > 10) {
-            return binarySearch(arr, left, mid - 1, 10);
-        }
-
-        return binarySearch(arr, mid + 1, right, 10);
     }
 
+	// Item not found in the array
     return -1;
 }
 
-let arr = [2, 3, 4, 10, 40];
-let result = binarySearch(arr, 0, arr.length);
+// Linear Search
+function linearSearch(arr, item) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] === item) {
+        // Item found
+        return i;
+      }
+    }
+    
+    // Item not found in the array
+    return -1;
+}
