@@ -6,11 +6,11 @@
 
 ---
 
-## Baixando o código
+## Download do código
 
-- Para baixar o código basta clicar no botão verde escrito "**Code**"
-- Após isso, clique no botão "**Download ZIP**"
-- Finalmente extraia o conteúdo compactado no arquivo ZIP
+1. Clique no botão "**Code**" (presente no canto superior direito do repositório)
+2. Após isso, clique no botão "**Download ZIP**"
+3. Por fim, extraia o conteúdo compactado no arquivo ZIP
 
 ---
 
