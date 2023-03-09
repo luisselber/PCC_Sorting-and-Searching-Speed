@@ -6,11 +6,6 @@
 
 ---
 
-## Pré-requisitos
-
-- Editor de código: **VSCode**
-- Extensão do VSCode: **LiveServer**
-
 ## Baixando o código
 
 - Para baixar o código basta clicar no botão verde escrito "**Code**"
@@ -21,10 +16,9 @@
 
 ## Utilizando o código
 
-- Abrir o a pasta extraida no **VSCode** e selecionar o arquivo **index.html**
-- Usar o atalho **Alt+L+O** para abrir o LiveServer
-- Feito isso, automaticamente o código irá executar os algoritimos de ordenação e apresentar na página do seu navegador os resultados em milissegundos
-- Para ver os resultados dos algoritimos de busca, primeiro você deve inserir cinco números entre **20** e **20.000.000** em cada caixa de entrada no formato (**n n n n n**) onde n são os números que você deseja buscar
-- Feito isso basta clicar nos botões escrito "**Search**" e o resultado do tempo das buscas será apresentado
+- Abra o arquivo **index.html**
+1. Feito isso, automaticamente os algoritimos de ordenação serão executados e, ao final do processo, os resultados serão exibidos em milissegundos
+- Para os algoritmos de buscar, insera cinco números entre **20** e **20.000.000** seguindo o formato (**n n n n n**), onde n são os números que você deseja buscar
+1. Clique nos botões escrito "**Search**" e o resultado do tempo das buscas será apresentado
 
 ---
