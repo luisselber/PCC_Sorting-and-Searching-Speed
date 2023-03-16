@@ -22,8 +22,6 @@ window.onload = async () => {
     let unsortedArrays = arrays.unsortedArrays;
     const sortedArrays = arrays.sortedArrays;
 
-    console.log(sortedArrays);
-
     runSortingAlgorithms(quickSort, unsortedArrays);
 
     runSortingAlgorithms(radixSort, unsortedArrays);
@@ -40,9 +38,11 @@ window.onload = async () => {
         sortingAlgorithmsList.children[1].children[7].innerHTML = sortingAlgorithmsList.children[1].children[7].innerHTML.slice(0, -3);
     });
 
-    sortingAlgorithmsList.children[0].children[0].innerHTML += ` ${algorithmsTime.quickSort.toString().split(',').join('ms | ')}ms = ${(algorithmsTime.quickSort.reduce((a, b) => Number(a) + Number(b), 0)).toFixed(1)}ms`;
-    sortingAlgorithmsList.children[0].children[1].innerHTML += ` ${algorithmsTime.radixSort.toString().split(',').join('ms | ')}ms = ${(algorithmsTime.radixSort.reduce((a, b) => Number(a) + Number(b), 0)).toFixed(1)}ms`;
-    sortingAlgorithmsList.children[0].children[2].innerHTML += ` ${algorithmsTime.mergeSort.toString().split(',').join('ms | ')}ms = ${(algorithmsTime.mergeSort.reduce((a, b) => Number(a) + Number(b), 0)).toFixed(1)}ms`;
+    for (let i = 1; i < sortingAlgorithmsList.rows.length - 1; i++) {
+        sortingAlgorithmsList.childNodes[1].children[i].children[0].innerHTML += `${algorithmsTime.quickSort.toString().split(',')[i - 1]}`;
+        sortingAlgorithmsList.childNodes[1].children[i].children[1].innerHTML += `${algorithmsTime.radixSort.toString().split(',')[i - 1]}`;
+        sortingAlgorithmsList.childNodes[1].children[i].children[2].innerHTML += `${algorithmsTime.mergeSort.toString().split(',')[i - 1]}`;
+    }
 };
 
 async function initializeArray() {
