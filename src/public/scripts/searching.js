@@ -3,10 +3,11 @@ const stopWatch = {
     endTime: 0,
 };
 
-const sortingAlgorithmsList = document.querySelector('.list');
+let sortingAlgorithmsList = document.querySelector('.list-2');
+sortingAlgorithmsList = sortingAlgorithmsList.children[sortingAlgorithmsList.children.length - 1].children[0];
 
 // Linear Search
-function linearSearch(sortedArray, start, end, elementToFind) {
+function linearSearch(sortedArray, start, end, elementToFind, tablePosition) {
     stopWatch.startTime = performance.now();
 
     for (let i = start; i < end; i++) {
@@ -14,8 +15,7 @@ function linearSearch(sortedArray, start, end, elementToFind) {
             stopWatch.endTime = performance.now();
 
             const linearSearchTimeElapsed = (stopWatch.endTime - stopWatch.startTime).toFixed(1);
-
-            sortingAlgorithmsList.children[1].children[3].innerHTML += ` ${linearSearchTimeElapsed}ms | `;
+            sortingAlgorithmsList.children[tablePosition + 1].children[0].innerHTML += ` ${linearSearchTimeElapsed}ms`;
 
             return;
         }
@@ -24,12 +24,11 @@ function linearSearch(sortedArray, start, end, elementToFind) {
     stopWatch.endTime = performance.now();
 
     const linearSearchTimeElapsed = (stopWatch.endTime - stopWatch.startTime).toFixed(1);
-
-    sortingAlgorithmsList.children[1].children[3].innerHTML += ` [Not found] ${linearSearchTimeElapsed}ms | `;
+    sortingAlgorithmsList.children[tablePosition + 1].children[0].innerHTML += ` [Not found] ${linearSearchTimeElapsed}ms`;
 }
 
 // Binary Search
-function binarySearch(sortedArray, left, right, elementToFind) {
+function binarySearch(sortedArray, left, right, elementToFind, tablePosition) {
     stopWatch.startTime = performance.now();
 
     if (right >= left) {
@@ -40,23 +39,22 @@ function binarySearch(sortedArray, left, right, elementToFind) {
 
             const binarySearchTimeElapsed = (stopWatch.endTime - stopWatch.startTime);
 
-            sortingAlgorithmsList.children[1].children[7].innerHTML += ` ${binarySearchTimeElapsed}ms | `;
+            sortingAlgorithmsList.children[tablePosition + 1].children[1].innerHTML += ` ${binarySearchTimeElapsed}ms`;
 
             return;
         }
 
         if (sortedArray[mid] > elementToFind) {
-            return binarySearch(sortedArray, left, mid - 1, elementToFind);
+            return binarySearch(sortedArray, left, mid - 1, elementToFind, tablePosition);
         }
 
-        return binarySearch(sortedArray, mid + 1, right, elementToFind);
+        return binarySearch(sortedArray, mid + 1, right, elementToFind, tablePosition);
     }
 
     stopWatch.endTime = performance.now();
 
     const binarySearchTimeElapsed = (stopWatch.endTime - stopWatch.startTime).toFixed(1);
-
-    sortingAlgorithmsList.children[1].children[7].innerHTML += ` [Not found] ${binarySearchTimeElapsed}ms | `;
+    sortingAlgorithmsList.children[tablePosition + 1].children[1].innerHTML += ` [Not found] ${binarySearchTimeElapsed}ms`;
 }
 
 export { linearSearch, binarySearch };
