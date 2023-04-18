@@ -23,7 +23,7 @@
 ## Executando o código
 
 - Crie uma imagem do Docker a partir do arquivo de configuração **Dockerfile**, navegando até o diretório onde o **Dockerfile** está localizado e execute o seguinte comando: `docker build -t searching-and-sorting-app .`
-- Isso criará uma imagem do Docker com a tag **searching-and-sorting-app**. Depois que a imagem for criada, execute um contêiner da imagem com o seguinte comando: `docker run -p 3000:3000 my-express-app`
+- Isso criará uma imagem do Docker com a tag **searching-and-sorting-app**. Depois que a imagem for criada, execute um contêiner da imagem com o seguinte comando: `docker run -p 3000:3000 searching-and-sorting-app`
 - Finalmente um contêiner da imagem **searching-and-sorting-app** será executado e a porta 3000 na máquina host será mapeada para a porta 3000 no contêiner, permitindo que você acesse o aplicativo em http://localhost:3000.
 
 ---

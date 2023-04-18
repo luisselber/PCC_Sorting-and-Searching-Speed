@@ -31,7 +31,7 @@ window.onload = async () => {
 
     runSortingAlgorithms(radixSort, unsortedArrays);
 
-    // runSortingAlgorithms(mergeSort, unsortedArrays);
+    runSortingAlgorithms(mergeSort, unsortedArrays);
 
     document.getElementById('linear-search').addEventListener('click', async () => {
         await runSearchingAlgorithms(linearSearch, sortedArrays);
@@ -41,7 +41,7 @@ window.onload = async () => {
         await runSearchingAlgorithms(binarySearch, sortedArrays);
     });
 
-    for (let i = 1; i < sortingAlgorithmsList.rows.length - 1; i++) {
+    for (let i = 1; i < sortingAlgorithmsList.rows.length; i++) {
         sortingAlgorithmsList.childNodes[1].children[i].children[0].innerHTML += `${algorithmsTime.quickSort.toString().split(',')[i - 1]}`;
         sortingAlgorithmsList.childNodes[1].children[i].children[1].innerHTML += `${algorithmsTime.radixSort.toString().split(',')[i - 1]}`;
         sortingAlgorithmsList.childNodes[1].children[i].children[2].innerHTML += `${algorithmsTime.mergeSort.toString().split(',')[i - 1]}`;
