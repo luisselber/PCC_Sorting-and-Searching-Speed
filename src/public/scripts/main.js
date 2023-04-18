@@ -18,15 +18,20 @@ const algorithmsTime = {
 };
 
 window.onload = async () => {
-    const arrays = await initializeArray();
-    let unsortedArrays = arrays.unsortedArrays;
-    const sortedArrays = arrays.sortedArrays;
+    const arrays = await fetch('/initialize-array').then((res) => {
+        return res.json();
+    }).then((data) => {
+        return [data.arrays[0], data.arrays[1]];
+    });
+
+    let unsortedArrays = arrays[0];
+    const sortedArrays = arrays[1];
 
     runSortingAlgorithms(quickSort, unsortedArrays);
 
     runSortingAlgorithms(radixSort, unsortedArrays);
 
-    runSortingAlgorithms(mergeSort, unsortedArrays);
+    // runSortingAlgorithms(mergeSort, unsortedArrays);
 
     document.getElementById('linear-search').addEventListener('click', async () => {
         await runSearchingAlgorithms(linearSearch, sortedArrays);
@@ -42,23 +47,6 @@ window.onload = async () => {
         sortingAlgorithmsList.childNodes[1].children[i].children[2].innerHTML += `${algorithmsTime.mergeSort.toString().split(',')[i - 1]}`;
     }
 };
-
-async function initializeArray() {
-    let unsortedArrays = Array(5).fill().map(() => []);
-
-    let elementsLength = Math.floor(Math.random() * 990000) + 10000; // Trocar depois
-
-    for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < elementsLength; j++) {
-            unsortedArrays[i].push(Math.floor(Math.random() * 1_980_000) + 20000);
-        }
-    }
-
-    let sortedArrays = unsortedArrays.map((unsortedArray) => [...unsortedArray]);
-    sortedArrays.map((sortedArray) => { sortedArray.sort((a, b) => a - b) });
-
-    return { unsortedArrays, sortedArrays };
-}
 
 function runSortingAlgorithms(sortingAlgorithm, unsortedArrays) {
     for (let i = 0; i < unsortedArrays.length; i++) {
